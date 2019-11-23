@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="js/bootstrap-3.3.7-dist/css/bootstrap.css">
+		<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/zh_CN.js"></script>
+		<script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
+		<style>
+			body{
+				margin-top: 50px;
+			}
+			lead{
+				font-size: 20px;
+			}
+			.form-horizontal{
+				margin: auto;
+				width: 500px;
+				border: #000000;
+			}
+			.form-submit{
+				margin: auto;
+				margin-top: 40px;
+			}
+		</style>
+		<script>
+			$(function () {
+				$(document).ready(function() {
+					formValidator();
+				});
+				
+				
+				$('form').bootstrapValidator({
+		　　　　　　　message: 'This value is not valid',
+					feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+		　　　　　　　　	invalid: 'glyphicon glyphicon-remove',
+		　　　　　　　　	validating: 'glyphicon glyphicon-refresh'
+	　　　　　　　　  },
+					fields: {
+						username: {
+							message: '用户名验证失败',
+							validators: {
+								notEmpty: {
+									message: '用户名不能为空'
+								},
+								stringLength: {
+									min: 3,
+									max: 18,
+									message: '用户名长度必须在3到18位之间'
+								},
+								regexp: {
+									regexp: /^[a-zA-Z0-9_]+$/,
+									message: '用户名只能包含大写、小写、数字和下划线'
+								}
+							}
+						},
+						password: {
+							message: '密码验证失败',
+							validators: {
+								notEmpty: {
+									message: '密码不能为空'
+								},
+								stringLength: {
+									min: 3,
+									max: 18,
+									message: '密码长度必须在3到18位之间'
+								},
+								regexp: {
+									regexp: /^[a-zA-Z0-9_]+$/,
+									message: '密码只能包含大写、小写、数字和下划线'
+								}
+							}
+						},
+						repassword: {
+							message: '确认密码验证失败',
+							validators: {
+								notEmpty: {
+									message: '确认密码不能为空'
+								},
+								identical: {
+    	                            field: 'password',
+    	                            message: '用户新密码与确认密码不一致！'
+    	                        }
+							}
+						},
+						age: {
+							message: '年龄验证失败',
+							validators: {
+								notEmpty: {
+									message: '年龄不能为空'
+								},
+								regexp: {
+									regexp: /^[0-9]{1,3}$/,
+									message: '年龄只能包含数字'
+								},
+								greaterThan:{
+									value : 18,
+									message: '年龄最小18周岁'
+								},
+								lessThan:{
+									value : 100,
+									message: '年龄最大100岁'
+								}
+							}
+						},
+						sex:{
+							message: '性别验证失败',
+							validators: {
+								notEmpty: {
+									message: '性别必须选择'
+								},
+							}
+						},
+						education: {
+							message: '学历验证失败',
+							validators: {
+								notEmpty: {
+									message: '学历必须选择'
+								}
+							}
+						},
+						qq: {
+							message: 'qq号码验证失败',
+							validators: {
+								notEmpty: {
+									message: 'qq号码不能为空'
+								},
+								regexp: {
+									regexp: /^[1-9][0-9]{4,12}$/,
+									message: 'qq号码格式有误'
+								}
+							}
+						},
+						email: {
+							message: '邮箱验证失败',
+							validators: {
+								notEmpty: {
+									message: '邮箱不能为空'
+								},
+								emailAddress: {
+									message: '邮箱地址格式有误'
+								}
+							}
+						},
+						date: {
+							message: '日期验证失败',
+							validators: {
+								notEmpty: {
+									message: '日期不能为空'
+								},
+								date: {
+									message: '日期格式有误'
+								}
+							}
+						}
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form id="checkForm">
+			<div class="form-horizontal">
+				<h2 class="lead">全新注册页面</h2>
+				<hr />
+				<div class="form-group">
+					<label class="col-md-3 control-label">用&nbsp;&nbsp;户：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="username" name="username" placeholder="此处输入用户" autocomplete="off">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">密&nbsp;&nbsp;码：</label>
+					<div class="col-md-8">
+						<input type="password" class="form-control" id="password" name="password" placeholder="此处输入密码" tip="此处输入密码"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">确认密码：</label>
+					<div class="col-md-8">
+						<input type="password" class="form-control" id="repassword" name="repassword" placeholder="此处确认密码" tip="此处确认密码"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">年&nbsp;&nbsp;龄：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="age" name="age" placeholder="此处输入年龄" tip="此处输入年龄" autocomplete="off"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">性&nbsp;&nbsp;别：</label>
+					<div class="col-md-4">
+						<div class="radio">
+							<label><input type="radio" value="1" name="sex" />男</label>
+							<label><input type="radio" value="0" name="sex" />女</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">学&nbsp;&nbsp;历：</label>
+					<div class="col-md-8">
+						<select class="form-control" name="education"  panelHeight: 'auto'>
+							<option value="">--请选择--</option>
+							<option value="1">专科</option>
+							<option value="2">本科</option>
+							<option value="3">研究生</option>
+							<option value="4">博士生</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">Q&nbsp;&nbsp;Q：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="qq" name="qq" placeholder="此处输入QQ号码" autocomplete="off"/>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">邮&nbsp;&nbsp;箱：</label>
+					<div class="col-md-8">
+						<input type="email" class="form-control" id="email" name="email" placeholder="此处输入邮箱" autocomplete="off"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">日&nbsp;&nbsp;期：</label>
+					<div class="col-md-8">
+						<input type="date" class="form-control" id="date" name="date" autocomplete="off"/>
+					</div>
+				</div>
+				<div class="form-submit">
+					<div class="col-md-2 col-sm-offset-2">
+						<input type="submit" class="btn btn-primary" id="registered" name="registered" value="提交"/>
+					</div>
+					<div class="col-md-4 col-sm-offset-2">
+						<input type="reset" class="btn btn-primary" id="reset" value="重置"/>
+					</div>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>
